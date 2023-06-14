@@ -1,22 +1,32 @@
-import { NavLink, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout';
+import { HomePage } from 'pages/HomePage';
+import Movies from 'pages/Movies';
+import MovieDetails from 'pages/MovieDetails';
+import Cast from './Cast';
+import Reviews from './Reviews';
 
-export const App = () => {
-    return (
-        <>
-            <nav>
-                <NavLink to="/">Home</NavLink>
-                <NavLink to="/movies">Movies</NavLink>
-            </nav>
-            <Routes>
-                <Route
-                    path="/"
-                    element={<div>Homepage</div>}
-                />
-                <Route
-                    path="/movies"
-                    element={<div>Movies</div>}
-                />
-            </Routes>
-        </>
-    );
+const App = () => {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="movies" element={<Movies />} />
+          <Route
+            path="movies/:movieId"
+            element={<MovieDetails />}
+          >
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Route>
+        </Route>
+        <Route
+          path="*"
+          element={<div>PAGE NOT FOUND</div>}
+        />
+      </Routes>
+    </>
+  );
 };
+export default App;
