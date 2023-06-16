@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const fetchTradingMovies = async () => {
+const fetchTrendingMovies = async () => {
   const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=8cf662758bc2884725173cf48e8fe898`;
 
   try {
@@ -15,4 +15,4 @@ const fetchTradingMovies = async () => {
     console.log('закончились фильмы');
   }
 };
-export default fetchTradingMovies;
+export default fetchTrendingMovies;

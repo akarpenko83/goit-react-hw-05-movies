@@ -1,11 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useParams,
+} from 'react-router-dom';
 import fetchMovieDetails from 'services/fetch-movie-details';
 import getGenresList from 'services/getGenresList';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [response, setResponse] = useState();
+  const location = useLocation();
+  const backLinkRef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     fetchMovieDetails(movieId)
@@ -16,6 +23,7 @@ const MovieDetails = () => {
   if (response) {
     return (
       <>
+        <Link to={backLinkRef.current}>Back</Link>
         <h2>Movie Name: {response.title}</h2>
         <img
           width={250}
@@ -23,7 +31,7 @@ const MovieDetails = () => {
           alt={response.tagline}
         ></img>
 
-        <p>User Score: {response.vote_average}</p>
+        <p>User Score: {response.vote_average * 10}%</p>
         <h3>Overview</h3>
         <p>{response.overview}</p>
         <h4>Genres</h4>

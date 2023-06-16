@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const fetchMovieDetails = async id => {
-  const url = `https://api.themoviedb.org/3/movie/${id}?language=en-US&api_key=8cf662758bc2884725173cf48e8fe898`;
+const fetchCast = async id => {
+  const url = `https://api.themoviedb.org/3/movie/${id}/credits?language=en-US&api_key=8cf662758bc2884725173cf48e8fe898`;
 
   try {
     const response = await axios.get(url);
@@ -15,4 +15,4 @@ const fetchMovieDetails = async id => {
     console.log(error.message);
   }
 };
-export default fetchMovieDetails;
+export default fetchCast;

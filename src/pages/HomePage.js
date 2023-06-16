@@ -1,15 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import fetchTradingMovies from 'services/fetch-weekly-trends';
+import fetchTrendingMovies from 'services/fetch-weekly-trends';
 
 export const HomePage = () => {
   const [response, setResponse] = useState([]);
   const location = useLocation();
 
-  console.log('🚀 ~ HomePage ~ location:', location);
-
   useEffect(() => {
-    fetchTradingMovies()
+    fetchTrendingMovies()
       .then(response => setResponse(response))
       .catch();
   }, []);
