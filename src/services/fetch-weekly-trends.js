@@ -12,7 +12,7 @@ const fetchTrendingMovies = async () => {
 
     return response.data.results;
   } catch (error) {
-    console.log('закончились фильмы');
+    console.log(error.message);
   }
 };
 export default fetchTrendingMovies;

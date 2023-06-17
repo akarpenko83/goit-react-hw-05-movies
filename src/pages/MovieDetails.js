@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import {
   Link,
@@ -45,7 +46,11 @@ const MovieDetails = () => {
             <Link to="reviews">Reviews</Link>
           </li>
         </ul>
-        <Outlet />
+        <Suspense
+          fallback={<div>Loading... Please wait</div>}
+        >
+          <Outlet />
+        </Suspense>
       </>
     );
   }

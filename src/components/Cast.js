@@ -2,14 +2,22 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import fetchCast from 'services/fetch-cast';
 import { nanoid } from 'nanoid';
+import { Loading } from 'notiflix';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Cast = () => {
   const { movieId } = useParams();
   const [response, setResponse] = useState();
 
   useEffect(() => {
+    Loading.hourglass();
     fetchCast(movieId)
       .then(response => setResponse(response))
+      .then(
+        (window.onload = () => {
+          Loading.remove();
+        }),
+      )
       .catch();
   }, [movieId]);
 
@@ -20,7 +28,7 @@ const Cast = () => {
           ({ name, character, profile_path }) => {
             return (
               <li key={nanoid()}>
-                <img
+                <LazyLoadImage
                   width={150}
                   height={225}
                   src={
@@ -29,7 +37,7 @@ const Cast = () => {
                       : 'https://placehold.co/150x225?text=not+available'
                   }
                   alt={response.tagline}
-                ></img>
+                />
                 <p>{name}</p>
                 <p>Character: {character}</p>
               </li>

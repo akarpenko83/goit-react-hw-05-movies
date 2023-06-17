@@ -1,34 +1,54 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import fetchTrendingMovies from 'services/fetch-weekly-trends';
+import {
+  StyledHeader,
+  StyledList,
+  StyledListItem,
+  StyledMovieName,
+} from './HomePage.styled';
+import { Loading } from 'notiflix';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-export const HomePage = () => {
+const HomePage = () => {
   const [response, setResponse] = useState([]);
   const location = useLocation();
 
   useEffect(() => {
+    Loading.arrows();
     fetchTrendingMovies()
       .then(response => setResponse(response))
+      .then(
+        (window.onload = () => {
+          Loading.remove();
+        }),
+      )
       .catch();
   }, []);
 
   return (
     <>
-      <h2>Trending today</h2>
-      <ul>
-        {response.map(({ id, title }) => {
+      <StyledHeader>Trending today</StyledHeader>
+      <StyledList>
+        {response.map(({ id, title, poster_path }) => {
           return (
-            <li key={id}>
+            <StyledListItem key={id}>
               <Link
                 to={`movies/${id}`}
                 state={{ from: location }}
               >
-                {title}
+                <LazyLoadImage
+                  width={150}
+                  src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                  alt={title}
+                />
+                <StyledMovieName>{title}</StyledMovieName>
               </Link>
-            </li>
+            </StyledListItem>
           );
         })}
-      </ul>
+      </StyledList>
     </>
   );
 };
+export default HomePage;

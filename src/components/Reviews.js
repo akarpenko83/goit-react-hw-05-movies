@@ -3,14 +3,21 @@ import { useParams } from 'react-router-dom';
 
 import { nanoid } from 'nanoid';
 import fetchReviews from 'services/fetch-reviews';
+import { Loading } from 'notiflix';
 
 const Reviews = () => {
   const { movieId } = useParams();
   const [response, setResponse] = useState();
 
   useEffect(() => {
+    Loading.arrows();
     fetchReviews(movieId)
       .then(response => setResponse(response))
+      .then(
+        (window.onload = () => {
+          Loading.remove();
+        }),
+      )
       .catch();
   }, [movieId]);
 
