@@ -6,6 +6,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 import fetchByQuery from 'services/fetch-by-query';
+import { BackBtn } from './MovieDetails.styled';
 
 const Movies = () => {
   const [response, setResponse] = useState([]);
@@ -38,7 +39,7 @@ const Movies = () => {
 
   return (
     <>
-      <Link to={backLinkRef.current}>Back</Link>
+      <BackBtn to={backLinkRef.current}>Go Back</BackBtn>
 
       <form onSubmit={handleSubmit}>
         <input
