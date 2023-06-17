@@ -37,7 +37,12 @@ const Movies = () => {
       return;
     }
     fetchByQuery(query)
-      .then(response => setResponse(response))
+      .then(response => {
+        if (response.length === 0) {
+          throw new Error(alert('No movies found'));
+        }
+        setResponse(response);
+      })
       .catch();
   }, [query]);
 
