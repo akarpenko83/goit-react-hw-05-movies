@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import fetchTrendingMovies from 'services/fetch-weekly-trends';
 import {
   StyledHeader,
@@ -32,18 +32,18 @@ const HomePage = () => {
         {response.map(({ id, title, poster_path }) => {
           return (
             <StyledListItem key={id}>
-              <Link
+              <StyledMovieName
                 to={`movies/${id}`}
                 state={{ from: location }}
               >
                 <img
                   loading="lazy"
-                  width={150}
+                  width={200}
                   src={`https://image.tmdb.org/t/p/original${poster_path}`}
                   alt={title}
                 />
-                <StyledMovieName>{title}</StyledMovieName>
-              </Link>
+                {title}
+              </StyledMovieName>
             </StyledListItem>
           );
         })}

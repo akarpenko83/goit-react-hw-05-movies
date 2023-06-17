@@ -14,3 +14,10 @@ export const BackBtn = styled(Link)`
   text-transform: uppercase;
   font-weight: 500;
 `;
+export const MoreInfoList = styled.p`
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 200px);
+
+  justify-content: center;
+  justify-items: center;
+`;

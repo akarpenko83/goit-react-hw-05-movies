@@ -1,14 +1,16 @@
 import { Suspense } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import {
-  Link,
   Outlet,
   useLocation,
   useParams,
 } from 'react-router-dom';
 import fetchMovieDetails from 'services/fetch-movie-details';
 import getGenresList from 'services/getGenresList';
-import { BackBtn } from './MovieDetails.styled';
+import {
+  BackBtn,
+  MoreInfoList,
+} from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -38,14 +40,10 @@ const MovieDetails = () => {
         <h4>Genres</h4>
         <p>{getGenresList(response.genres)}</p>
         <p>Additional information</p>
-        <ul>
-          <li>
-            <Link to="cast">Cast</Link>
-          </li>
-          <li>
-            <Link to="reviews">Reviews</Link>
-          </li>
-        </ul>
+        <MoreInfoList>
+          <BackBtn to="cast">Cast</BackBtn>
+          <BackBtn to="reviews">Reviews</BackBtn>
+        </MoreInfoList>
         <Suspense
           fallback={<div>Loading... Please wait</div>}
         >

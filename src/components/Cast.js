@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import fetchCast from 'services/fetch-cast';
 import { nanoid } from 'nanoid';
 import { Loading } from 'notiflix';
+import { StyledList } from './Cast.styled';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -22,7 +23,7 @@ const Cast = () => {
 
   if (response) {
     return (
-      <ul>
+      <StyledList>
         {response.cast.map(
           ({ name, character, profile_path }) => {
             return (
@@ -44,7 +45,7 @@ const Cast = () => {
             );
           },
         )}
-      </ul>
+      </StyledList>
     );
   }
 };
