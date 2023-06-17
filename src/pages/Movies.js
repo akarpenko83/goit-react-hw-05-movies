@@ -11,6 +11,7 @@ import {
   StyledInput,
   SubmitBtn,
 } from './Movies.styled';
+import { Loading } from 'notiflix';
 
 const Movies = () => {
   const [response, setResponse] = useState([]);
@@ -37,13 +38,19 @@ const Movies = () => {
       return;
     }
     fetchByQuery(query)
+      .then(Loading.hourglass())
       .then(response => {
         if (response.length === 0) {
           throw new Error(alert('No movies found'));
         }
         setResponse(response);
       })
-      .catch();
+      .catch()
+      .finally(
+        (window.onload = () => {
+          Loading.remove();
+        }),
+      );
   }, [query]);
 
   return (

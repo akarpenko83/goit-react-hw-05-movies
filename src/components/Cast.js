@@ -13,12 +13,12 @@ const Cast = () => {
     Loading.hourglass();
     fetchCast(movieId)
       .then(response => setResponse(response))
-      .then(
+      .catch()
+      .finally(
         (window.onload = () => {
           Loading.remove();
         }),
-      )
-      .catch();
+      );
   }, [movieId]);
 
   if (response) {
