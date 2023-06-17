@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import fetchMovieDetails from 'services/fetch-movie-details';
 import getGenresList from 'services/getGenresList';
+import { BackBtn } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -24,14 +25,13 @@ const MovieDetails = () => {
   if (response) {
     return (
       <>
-        <Link to={backLinkRef.current}>Back</Link>
-        <h2>Movie Name: {response.title}</h2>
+        <BackBtn to={backLinkRef.current}>Go Back</BackBtn>{' '}
         <img
           width={250}
           src={`https://image.tmdb.org/t/p/original${response.poster_path}`}
           alt={response.tagline}
         ></img>
-
+        <h2>{response.title}</h2>
         <p>User Score: {response.vote_average * 10}%</p>
         <h3>Overview</h3>
         <p>{response.overview}</p>
