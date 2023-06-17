@@ -37,8 +37,9 @@ const Movies = () => {
     if (!query) {
       return;
     }
+    Loading.hourglass();
     fetchByQuery(query)
-      .then(Loading.hourglass())
+      // .then(Loading.hourglass())
       .then(response => {
         if (response.length === 0) {
           throw new Error(alert('No movies found'));
