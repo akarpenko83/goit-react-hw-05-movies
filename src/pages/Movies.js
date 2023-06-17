@@ -1,7 +1,6 @@
 import Query from 'components/Query';
 import { useEffect, useRef, useState } from 'react';
 import {
-  Link,
   useLocation,
   useSearchParams,
 } from 'react-router-dom';
