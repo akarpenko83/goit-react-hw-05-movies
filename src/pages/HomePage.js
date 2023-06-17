@@ -8,7 +8,6 @@ import {
   StyledMovieName,
 } from './HomePage.styled';
 import { Loading } from 'notiflix';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const HomePage = () => {
   const [response, setResponse] = useState([]);
@@ -37,7 +36,8 @@ const HomePage = () => {
                 to={`movies/${id}`}
                 state={{ from: location }}
               >
-                <LazyLoadImage
+                <img
+                  loading="lazy"
                   width={150}
                   src={`https://image.tmdb.org/t/p/original${poster_path}`}
                   alt={title}
