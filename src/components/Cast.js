@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import fetchCast from 'services/fetch-cast';
 import { nanoid } from 'nanoid';
 import { Loading } from 'notiflix';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -28,7 +27,8 @@ const Cast = () => {
           ({ name, character, profile_path }) => {
             return (
               <li key={nanoid()}>
-                <LazyLoadImage
+                <img
+                  loading="lazy"
                   width={150}
                   height={225}
                   src={
