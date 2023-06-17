@@ -15,6 +15,6 @@ export const StyledListItem = styled.li`
 export const StyledMovieName = styled.span`
   display: flex;
   flex-direction: column;
-  text-decoration: none
+  text-decoration: none;
   align-items: center;
 `;
