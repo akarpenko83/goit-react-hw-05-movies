@@ -22,7 +22,6 @@ const Reviews = () => {
   }, [movieId]);
 
   if (response) {
-    console.log(response.length);
     return (
       <ul>
         {response.map(({ author, content }) => {

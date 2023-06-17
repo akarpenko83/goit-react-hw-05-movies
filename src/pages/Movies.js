@@ -6,6 +6,11 @@ import {
 } from 'react-router-dom';
 import fetchByQuery from 'services/fetch-by-query';
 import { BackBtn } from './MovieDetails.styled';
+import {
+  StyledForm,
+  StyledInput,
+  SubmitBtn,
+} from './Movies.styled';
 
 const Movies = () => {
   const [response, setResponse] = useState([]);
@@ -40,17 +45,17 @@ const Movies = () => {
     <>
       <BackBtn to={backLinkRef.current}>Go Back</BackBtn>
 
-      <form onSubmit={handleSubmit}>
-        <input
+      <StyledForm onSubmit={handleSubmit}>
+        <StyledInput
           onChange={evt =>
             setSearchParams({ query: evt.target.value })
           }
           type="text"
           name="query"
           value={searchParams.get('query') ?? ''}
-        ></input>
-        <button type="submit">Search</button>
-      </form>
+        ></StyledInput>
+        <SubmitBtn type="submit">Search</SubmitBtn>
+      </StyledForm>
       <Query movies={response} />
     </>
   );

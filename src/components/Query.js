@@ -1,24 +1,35 @@
-import { Link, useLocation } from 'react-router-dom';
+import {
+  StyledList,
+  StyledListItem,
+  StyledMovieName,
+} from 'pages/HomePage.styled';
+import { useLocation } from 'react-router-dom';
 
 export const Query = props => {
   const location = useLocation();
 
   return (
     <>
-      <ul>
-        {props.movies?.map(({ id, title }) => {
+      <StyledList>
+        {props.movies?.map(({ id, title, poster_path }) => {
           return (
-            <li key={id}>
-              <Link
+            <StyledListItem key={id}>
+              <StyledMovieName
                 to={`/movies/${id}`}
                 state={{ from: location }}
               >
+                <img
+                  loading="lazy"
+                  width={200}
+                  src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                  alt={title}
+                />
                 {title}
-              </Link>
-            </li>
+              </StyledMovieName>
+            </StyledListItem>
           );
         })}
-      </ul>
+      </StyledList>
     </>
   );
 };
