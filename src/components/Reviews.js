@@ -7,7 +7,7 @@ import { Loading } from 'notiflix';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [response, setResponse] = useState();
+  const [response, setResponse] = useState(null);
 
   useEffect(() => {
     Loading.arrows();
@@ -21,22 +21,23 @@ const Reviews = () => {
       );
   }, [movieId]);
 
-  if (response) {
+  if (!response) {
     return (
-      <ul>
-        {response.map(({ author, content }) => {
-          return (
-            <li key={nanoid()}>
-              <p>Author: {author}</p>
-              <p>{content}</p>
-            </li>
-          );
-        })}
-      </ul>
+      <div>We don`t have any reviews for this movie</div>
     );
   }
+
   return (
-    <div>We don`t have any reviews for this movie</div>
+    <ul>
+      {response.map(({ author, content }) => {
+        return (
+          <li key={nanoid()}>
+            <p>Author: {author}</p>
+            <p>{content}</p>
+          </li>
+        );
+      })}
+    </ul>
   );
 };
 

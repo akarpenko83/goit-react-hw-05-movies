@@ -39,7 +39,11 @@ const HomePage = () => {
                 <img
                   loading="lazy"
                   width={200}
-                  src={`https://image.tmdb.org/t/p/original${poster_path}`}
+                  src={
+                    poster_path
+                      ? `https://image.tmdb.org/t/p/original${poster_path}`
+                      : 'https://placehold.co/150x225?text=not+available'
+                  }
                   alt={title}
                 />
                 {title}
